@@ -15,7 +15,7 @@ resource "aws_subnet" "tf_sn" {
   count = 2
   vpc_id = aws_vpc.tf_vpc.id
   cidr_block = var.sn_cidr[count.index]
-  availability_zone = "ap-south-1a"
+  availability_zone = "ap-south-1b"
 }
 
 resource "aws_internet_gateway" "tf_gw" {
@@ -52,6 +52,12 @@ resource "aws_security_group" "tf_sg" {
   ingress {
     from_port       = 80
     to_port         = 80
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port       = 443
+    to_port         = 443
     protocol        = "tcp"
     cidr_blocks     = ["0.0.0.0/0"]
   }
