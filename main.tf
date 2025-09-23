@@ -21,7 +21,7 @@ resource "aws_subnet" "tf_sn" {
 resource "aws_internet_gateway" "tf_gw" {
   vpc_id = aws_vpc.tf_vpc.id
   tags = {
-    Name = "tf_ig"
+    Name = "tf_igw"
   }
 }
 
@@ -62,8 +62,8 @@ resource "aws_security_group" "tf_sg" {
     cidr_blocks     = ["0.0.0.0/0"]
   }
     ingress {
-    from_port       = 2222
-    to_port         = 2222
+    from_port       = 22
+    to_port         = 22
     protocol        = "tcp"
     cidr_blocks     = ["0.0.0.0/0"]
   }
@@ -108,6 +108,6 @@ resource "aws_instance" "tf_instance_1" {
   availability_zone = "ap-south-1a"
 
   tags = {
-    Name = "tf_instance_1"
+    Name = "tf_instance"
   }
 }
